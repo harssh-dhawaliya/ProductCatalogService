@@ -1,17 +1,17 @@
 package com.psc.productcatalogservice.dtos;
 
-import com.psc.productcatalogservice.models.Category;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
-
-@Getter
 @Setter
+@Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDto {
     private Long id;
     private String name;
     private String description;
     private String imageUrl;
     private Double price;
-    private Category category;
+    private CategoryDto category;
 }

@@ -4,8 +4,8 @@ package com.psc.productcatalogservice.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class FakeStoreProductDto {
     private Long id;
     private String title;
