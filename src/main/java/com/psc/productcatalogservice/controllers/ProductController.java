@@ -24,7 +24,6 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
-
     @GetMapping("/products")
     public List<ProductDto> getAllProducts() {
         return null;
@@ -58,9 +57,18 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ProductDto createProduct(@RequestBody ProductDto input) {
-        return input;
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto input) {
+        Product inputProduct = from(input);
+        try {
+            Product output = productService.createProduct(inputProduct);
+            ProductDto response = from(output);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        }
     }
+
+
 
 
     private Product from(ProductDto productDto) {
@@ -93,6 +101,7 @@ public class ProductController {
             categoryDto.setId(product.getCategory().getId());
             productDto.setCategory(categoryDto);
         }
+
         return productDto;
     }
 

@@ -17,8 +17,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("fkps")
 public class FakeStoreProductService implements IProductService {
+
     @Autowired
     private RestTemplateBuilder restTemplateBuilder;
 
@@ -66,6 +67,12 @@ public class FakeStoreProductService implements IProductService {
         }
 
         return null;
+    }
+
+    //ToDo : For Students
+    @Override
+    public void deleteProduct(Long id) {
+
     }
 
     private Boolean isValidateFakeStoreResponse(ResponseEntity<FakeStoreProductDto>
