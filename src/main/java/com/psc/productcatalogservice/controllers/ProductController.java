@@ -1,17 +1,21 @@
 package com.psc.productcatalogservice.controllers;
 
 import com.psc.productcatalogservice.dtos.CategoryDto;
-import com.psc.productcatalogservice.dtos.FakeStoreProductDto;
 import com.psc.productcatalogservice.dtos.ProductDto;
 import com.psc.productcatalogservice.models.Category;
 import com.psc.productcatalogservice.models.Product;
 import com.psc.productcatalogservice.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+//ToDo 8/6 -: Add PUT,PATCH and DELETE API
+//ToDo 8/6 -: Read about RestTemplate
+
+//ToDo : Exception Handlers to be shown by Anurag
 
 @RestController
 public class ProductController {
@@ -19,6 +23,7 @@ public class ProductController {
 
     @Autowired
     private IProductService productService;
+
 
     @GetMapping("/products")
     public List<ProductDto> getAllProducts() {
@@ -88,21 +93,7 @@ public class ProductController {
             categoryDto.setId(product.getCategory().getId());
             productDto.setCategory(categoryDto);
         }
-
         return productDto;
     }
-
-
-//    @GetMapping("/products/{catId}/{prodId}")
-//    public Product getProduct(@PathVariable("catId") Long categoryId,
-//                              @PathVariable("prodId") Long productId) {
-//        Product product =new Product();
-//        Category category = new Category();
-//        category.setId(categoryId);
-//        product.setCategory(category);
-//        product.setId(productId);
-//        return product;
-//    }
-
 
 }
